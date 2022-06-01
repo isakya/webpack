@@ -5,6 +5,9 @@
 // 引入node中一个内置的path模块，专门用于解决路径问题
 var path = require('path')
 
+// 引入插件 用于加工html文件
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+
 // 基本css-loader的配置
 const baseCssLoader = ['style-loader', 'css-loader']
 
@@ -14,8 +17,8 @@ module.exports = {
   // entry: { peiqi: './src/js/app.js' }, // 入口
   entry: './src/js/app.js', // 入口
   output: {
-    path: path.resolve(__dirname, 'build/js'), // 输出文件的路径
-    filename: 'app.js'
+    path: path.resolve(__dirname, 'build'), // 输出文件的路径
+    filename: 'js/app.js' // 输出文件名字
   },
   // module.rules 中配置的一个个的loader
   module: {
@@ -41,5 +44,13 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  // plugins中专门用于配置插件，插件必须经过实例化这一环节
+  plugins: [
+    // 实例化HtmlWebpackPlugin
+    new HtmlWebpackPlugin({
+      template: './src/index.html' // 模板的位置
+    })
+  ]
 }
+
