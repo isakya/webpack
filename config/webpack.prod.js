@@ -13,13 +13,27 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 // 基本css-loader的配置
-const baseCssLoader = [MiniCssExtractPlugin.loader, 'css-loader']
+const baseCssLoader = [
+  MiniCssExtractPlugin.loader,
+  'css-loader',
+  'postcss-loader'
+  // {
+  //   loader: "postcss-loader",
+  //   options: {
+  //     postcssOptions: {
+  //       plugins: [
+  //         'postcss-preset-env'
+  //       ],
+  //     },
+  //   },
+  // }
+]
 
 
 
 // 使用cjs的模块化规范，暴露一个对象，该对象就是webpack的详细配置对象(规则)
 module.exports = {
-  mode: 'development', // 工作模式
+  mode: 'production', // 工作模式
   // entry: { peiqi: './src/js/app.js' }, // 入口
   entry: './src/js/app.js', // 入口
   output: {
