@@ -59,6 +59,20 @@ module.exports = {
           }
         ]
       },
+      // 其他资源打包 file-loader 是文件的搬运工
+      {
+        exclude: /\.(html|less|css|png|jpg|bmp|js|gif|json)$/, // 排除
+        use: [
+          {
+            // loader: 'file-loader',
+            loader: 'file-loader',
+            options: {
+              outputPath: 'media',
+              name: '[hash:5].[ext]'
+            }
+          }
+        ]
+      },
       // 配置解析html中的图片
       {
         test: /\.(html)$/,
