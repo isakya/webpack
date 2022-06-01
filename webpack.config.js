@@ -58,6 +58,11 @@ module.exports = {
             }
           }
         ]
+      },
+      // 配置解析html中的图片
+      {
+        test: /\.(html)$/,
+        use: ['html-loader']
       }
     ]
   },
