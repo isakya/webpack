@@ -86,6 +86,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html' // 模板的位置
     })
-  ]
+  ],
+  devServer: {
+    port: 5000, // 开启服务器的端口号 为了呈现页面而生成的服务器
+    open: true, // 自动打开浏览器
+    hot: true // 开启模块热更新 也称 热模替换
+  }
 }
 
