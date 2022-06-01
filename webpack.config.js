@@ -42,6 +42,22 @@ module.exports = {
           ...baseCssLoader,
           'less-loader'
         ]
+      },
+      // 3、配置解析样式中的图片，但该file-loader没对图片进行优化，只是复制改名而已，如果要优化就需要url-loader（需要下载）
+      {
+        test: /\.(png|jpg|gif|bmp)$/,
+        use: [
+          {
+            // loader: 'file-loader',
+            loader: 'url-loader',
+            options: {
+              outputPath: 'imgs', // 配置图片加工后存在的位置,不要加 /, 不然要配置publicPath
+              // publicPath: '/build/imgs' // 配置图片引入时前缀路径
+              name: '[hash:5].[ext]', // 处理图片名字长 用:数量
+              limit: 8 * 1024 // 图片大小小于8KB时 将图片转为base64
+            }
+          }
+        ]
       }
     ]
   },
