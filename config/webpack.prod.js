@@ -11,6 +11,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 // 引入mini-css-extract-plugin，用于提取CSS为单独的文件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
+// 引入压缩css插件
+var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+
 // 基本css-loader的配置
 const baseCssLoader = [
   MiniCssExtractPlugin.loader,
@@ -113,5 +116,12 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'css/index.css', // 放到指定的文件夹下，并同时以index.css命名
     }),
-  ],
+    // default 启用所有的默认配置 
+    // removeAll 移除所有的注释
+    new OptimizeCssAssetsPlugin({
+      cssProcessorPluginOptions: {
+        presets: ['default', { discardComments: { removeAll: true } }]
+      }
+    })
+  ]
 }
