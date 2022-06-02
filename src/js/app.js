@@ -9,6 +9,9 @@ import '../css/demo.css'
 import '../css/demo.less'
 import '../css/iconfont.css'
 
+// 包含ES6的高级语法的转换
+import '@babel/polyfill'
+
 sum(1, 2)
 sub(3, 4)
 console.log(data)
