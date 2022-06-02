@@ -3,13 +3,13 @@
 // 该文件要符合cjs模块化规范
 
 // 引入node中一个内置的path模块，专门用于解决路径问题
-const path = require('path');
+const path = require('path')
 
 // 引入插件 用于加工html文件 // 用之前不要style-loader 不然无法提取出css文件
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 // 引入mini-css-extract-plugin，用于提取CSS为单独的文件
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 // 基本css-loader的配置
 const baseCssLoader = [
@@ -26,7 +26,7 @@ const baseCssLoader = [
   //     },
   //   },
   // }
-];
+]
 
 // 使用cjs的模块化规范，暴露一个对象，该对象就是webpack的详细配置对象(规则)
 module.exports = {
@@ -90,17 +90,17 @@ module.exports = {
         test: /\.(html)$/,
         use: ['html-loader'],
       },
-      // 配置js语法检查
+      // js语法转换
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        // 优先执行 js运行前执行eslint
-        enforce: 'pre',
-        loader: 'eslint-loader',
-        options: {
-          fix: true, // 若有问题自动修复，重要！！
-        },
-      },
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      }
     ],
   },
   // plugins中专门用于配置插件，插件必须经过实例化这一环节
@@ -114,4 +114,4 @@ module.exports = {
       filename: 'css/index.css', // 放到指定的文件夹下，并同时以index.css命名
     }),
   ],
-};
+}
